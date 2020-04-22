@@ -18,6 +18,10 @@ Esse projeto foi desenvolvido na IDE Eclipse, versão 2019-12 (4.14.0) e é uma 
 Esse projeto está deployado no Heroku Cloud na seguinte URL
 https://escola-contas.herokuapp.com/
 
+
+<b> Documentação Swagger da API </b> </br>
+https://escola-contas.herokuapp.com/swagger-ui.html#/
+
 <b> ENGLISH VERSION </b>
 
 Project for academic purposes on WebServices, where we simulate students payments from a university.
@@ -37,5 +41,8 @@ This project was developed in IDE Eclipse, version 2019-12 (4.14.0) and is a Mav
 <b> Productive EndPoints. </b> </br>
 This project is deployed on Heroku Cloud, service link below
 https://escola-contas.herokuapp.com/
+
+<b> API Swagger documentation </b> </br>
+https://escola-contas.herokuapp.com/swagger-ui.html#/
 
 by Fabio Bara
