@@ -1,8 +1,8 @@
 # TrabalhoSpring
 
-Projeto de fins acadêmicos sobre o framework Spring, onde simulamos transações de credito de alunos de uma universidade.
+Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de pagamentos dos alunos de uma universidade.
 
-Para rodar o software localmente:</br>
+<b> Para rodar o software localmente:</b> </br>
 1 - É pré-requisito ter o Java 8 instalado para executar essa API</br>
 2 - Faça o download do arquivo JAR que se encontra na pasta Target</br>
 3 - Acesse a pasta onde está o arquivo via Prompt de comando do seu SO </br>
@@ -14,10 +14,13 @@ Para rodar o software localmente:</br>
 
 Esse projeto foi desenvolvido na IDE Eclipse, versão 2019-12 (4.14.0) e é uma Maven Project, recomendo o uso dessa ferramenta para a análise do código fonte!
 
+<b> EndPoints Produtivos. </b> </br>
+Esse projeto está deployado no Heroku Cloud na seguinte URL
+https://escola-contas.herokuapp.com/
 
-ENGLISH VERSION
+<b> ENGLISH VERSION </b>
 
-Project for academic purposes on Spring framework, where we simulate credit transactions of students from a university.
+Project for academic purposes on WebServices, where we simulate students payments from a university.
 
 To run the software locally:
 1 - It is a prerequisite to have Java 8 installed to run this API</br>
@@ -30,5 +33,9 @@ To run the software locally:
 8 - You can add new customers, this new will be automaticaly avaliable to transact</br>
 
 This project was developed in IDE Eclipse, version 2019-12 (4.14.0) and is a Maven Project, I recommend using this tool for analyzing the source code!
+
+<b> Productive EndPoints. </b> </br>
+This project is deployed on Heroku Cloud, service link below
+https://escola-contas.herokuapp.com/
 
 by Fabio Bara
