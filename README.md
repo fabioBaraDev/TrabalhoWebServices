@@ -1,4 +1,4 @@
-# TrabalhoSpring
+# TrabalhoWebServices
 
 Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de pagamentos dos alunos de uma universidade.
 
