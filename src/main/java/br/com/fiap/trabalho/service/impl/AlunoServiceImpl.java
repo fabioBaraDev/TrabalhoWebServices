@@ -54,7 +54,7 @@ public class AlunoServiceImpl implements AlunoService {
 
 	private Optional<Aluno> getAluno(Integer id) {
 
-		return Optional.ofNullable(findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+		return Optional.ofNullable(alunoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 	}
 
 	public List<AlunoDTO> getAll() { 
@@ -68,7 +68,7 @@ public class AlunoServiceImpl implements AlunoService {
 	}
 
 	public Optional<AlunoDTO> getById(Integer id) {
-		Optional<Aluno> aluno = alunoRepository.findById(id);
+		Optional<Aluno> aluno = Optional.ofNullable(alunoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 		Optional<AlunoDTO> alunoDTO = Optional
 				.of(new AlunoDTO(aluno.get().getId(), aluno.get().getNome(), aluno.get().getNumeroCartao()));
 		return alunoDTO;
