@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.entity.Credito;
 import br.com.fiap.trabalho.entity.Extrato;
 import br.com.fiap.trabalho.enumerator.Operacao;
@@ -46,6 +47,15 @@ public class CreditoServiceImpl implements CreditoService {
 		return persistirClienteAtivo(creditDTO, false);
 	}
 
+	public StatusDTO getStatusCredito(Integer id){
+		Optional<Credito> credito = creditoRepository.findSaldoById(id);
+		
+		StatusDTO status = new StatusDTO();
+		status.setStatusAluno(credito.get().getAlunoCreditoAtivo());
+		
+		return status;
+	}
+	
 	public CreditoDTO getSaldoById(Integer id) throws Exception {
 		Credito saldo = getCredito(id);
 

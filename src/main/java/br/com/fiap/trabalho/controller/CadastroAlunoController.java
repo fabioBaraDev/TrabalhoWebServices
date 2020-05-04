@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.service.AlunoService;
 
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,11 @@ public class CadastroAlunoController {
 	@GetMapping("/aluno/todos")
 	public List<AlunoDTO> getAll() {
 		return alunoService.getAll();
+	}
+	
+	@GetMapping("aluno/status/{id}")
+	public StatusDTO getStatusById(@PathVariable Integer id) {
+		return alunoService.getAlunoStatus(id);
 	}
 
 	@GetMapping("/aluno/{id}")

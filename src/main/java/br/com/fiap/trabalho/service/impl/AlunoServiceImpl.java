@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.entity.Aluno;
+import br.com.fiap.trabalho.entity.Credito;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.service.AlunoService;
 import br.com.fiap.trabalho.service.CreditoService;
@@ -78,6 +80,12 @@ public class AlunoServiceImpl implements AlunoService {
 		}).collect(Collectors.toList());
 
 		return alunoDTO;
+	}
+	
+	public StatusDTO getAlunoStatus(Integer id){
+		
+		return creditoService.getStatusCredito(id);
+		
 	}
 
 }
