@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
@@ -15,6 +16,7 @@ import br.com.fiap.trabalho.entity.Credito;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.service.AlunoService;
 import br.com.fiap.trabalho.service.CreditoService;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AlunoServiceImpl implements AlunoService {
@@ -53,7 +55,8 @@ public class AlunoServiceImpl implements AlunoService {
 	}
 
 	private Optional<Aluno> getAluno(Integer id) {
-		return alunoRepository.findById(id);
+
+		return Optional.ofNullable(alunoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 	}
 
 	public List<AlunoDTO> getAll() { 
@@ -67,7 +70,7 @@ public class AlunoServiceImpl implements AlunoService {
 	}
 
 	public Optional<AlunoDTO> getById(Integer id) {
-		Optional<Aluno> aluno = alunoRepository.findById(id);
+		Optional<Aluno> aluno = Optional.ofNullable(alunoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 		Optional<AlunoDTO> alunoDTO = Optional
 				.of(new AlunoDTO(aluno.get().getId(), aluno.get().getNome(), aluno.get().getNumeroCartao()));
 		return alunoDTO;
