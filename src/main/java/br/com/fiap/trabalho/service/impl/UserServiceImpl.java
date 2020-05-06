@@ -1,6 +1,6 @@
 package br.com.fiap.trabalho.service.impl;
 
-import br.com.fiap.trabalho.controller.UserService;
+import br.com.fiap.trabalho.service.UserService;
 import br.com.fiap.trabalho.dto.AuthDTO;
 import br.com.fiap.trabalho.dto.CreateUserDTO;
 import br.com.fiap.trabalho.dto.JwtDTO;

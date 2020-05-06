@@ -4,6 +4,7 @@ import br.com.fiap.trabalho.dto.AuthDTO;
 import br.com.fiap.trabalho.dto.CreateUserDTO;
 import br.com.fiap.trabalho.dto.JwtDTO;
 import br.com.fiap.trabalho.dto.UserDTO;
+import br.com.fiap.trabalho.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

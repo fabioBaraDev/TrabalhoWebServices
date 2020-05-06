@@ -1,4 +1,4 @@
-package br.com.fiap.trabalho.controller;
+package br.com.fiap.trabalho.service;
 
 import br.com.fiap.trabalho.dto.AuthDTO;
 import br.com.fiap.trabalho.dto.CreateUserDTO;
