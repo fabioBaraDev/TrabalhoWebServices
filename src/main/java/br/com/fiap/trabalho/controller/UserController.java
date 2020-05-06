@@ -19,12 +19,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/user")
     public UserDTO create(@RequestBody CreateUserDTO createUserDTO){
         return userService.create(createUserDTO);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/token")
     public JwtDTO login(@RequestBody AuthDTO authDTO){
         return userService.login(authDTO);
     }
