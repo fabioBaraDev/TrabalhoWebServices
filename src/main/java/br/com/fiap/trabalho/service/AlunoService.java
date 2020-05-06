@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.StatusDTO;
 
 public interface AlunoService {
 
@@ -17,5 +18,7 @@ public interface AlunoService {
 	public Optional<AlunoDTO> getById(Integer id);
 	
 	public List<AlunoDTO> getByName(String nome);
+	
+	public StatusDTO getAlunoStatus(Integer id);
 
 }
