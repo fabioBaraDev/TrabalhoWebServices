@@ -83,16 +83,6 @@ public class CadastroControllerTest {
 	}
 
 	@Test
-	public void getByName() {
-		List<AlunoDTO> list = new ArrayList<AlunoDTO>();
-		list.add((new AlunoDTO(1, "Joao", 1111111L)));
-		Mockito.when(alunoService.getByName(Mockito.anyString())).thenReturn(list);
-
-		List<AlunoDTO> res = controller.getByName("Joao");
-		assertNotNull(res);
-	}
-
-	@Test
 	public void delete() {
 		
 		Mockito.when(alunoService.delete(Mockito.anyInt())).thenReturn("Sucesso");
