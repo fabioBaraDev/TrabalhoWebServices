@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.StatusDTO;
 
 public interface CreditoService {
 	public ResponseEntity debitar(CreditoDTO creditoDTO) throws Exception;
@@ -16,4 +17,5 @@ public interface CreditoService {
 	public ResponseEntity desativarCartao(CreditoDTO creditDTO) throws Exception;
 	public Optional salvar(CreditoDTO creditDTO, Boolean ativo);
 	public void delete(Integer id);
+	public StatusDTO getStatusCredito(Integer id);
 }
