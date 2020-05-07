@@ -2,6 +2,8 @@ package br.com.fiap.trabalho.service.impl;
 
 import java.util.Optional;
 
+import br.com.fiap.trabalho.dto.CompraDTO;
+import br.com.fiap.trabalho.exceptions.AlunoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import br.com.fiap.trabalho.repository.CreditoRepository;
 import br.com.fiap.trabalho.repository.ExtratoRepository;
 import br.com.fiap.trabalho.service.AlunoService;
 import br.com.fiap.trabalho.service.CreditoService;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CreditoServiceImpl implements CreditoService {
@@ -30,6 +33,16 @@ public class CreditoServiceImpl implements CreditoService {
 
 	@Autowired
 	ExtratoRepository extratoRepository;
+
+	public ResponseEntity comprarCredito(CompraDTO compraRequest) throws Exception {
+
+		Optional<AlunoDTO> alunoPersistido = this.alunoService.getById(compraRequest.getAluno().getId());
+
+		if(!alunoPersistido.isPresent())
+			throw new AlunoNaoEncontrado();
+
+		return persistir(compraRequest, Operacao.CREDITO);
+	}
 
 	public ResponseEntity debitar(CreditoDTO creditoRequest) throws Exception {
 		return persistir(creditoRequest, Operacao.DEBITO);
