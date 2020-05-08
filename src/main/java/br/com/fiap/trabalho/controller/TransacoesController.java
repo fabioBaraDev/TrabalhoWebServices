@@ -1,5 +1,8 @@
 package br.com.fiap.trabalho.controller;
 
+import br.com.fiap.trabalho.dto.CompraDTO;
+import br.com.fiap.trabalho.exceptions.AlunoNaoEncontrado;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.trabalho.dto.CreditoDTO;
 import br.com.fiap.trabalho.exceptions.SemSaldoCadastrado;
 import br.com.fiap.trabalho.service.CreditoService;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("transacoes")
@@ -27,6 +31,17 @@ public class TransacoesController {
 			return credito.debitar(creditoDTO);
 		} catch (SemSaldoCadastrado e) {
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+		} catch (Exception e) {
+			return new ResponseEntity("Ocorreu um erro inesperado", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("/credito/comprar")
+	public ResponseEntity<String> comprarCredito(@RequestBody CompraDTO compraDTO) {
+		try {
+			return credito.comprarCredito(compraDTO);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity(e.getMessage(), e.getStatus());
 		} catch (Exception e) {
 			return new ResponseEntity("Ocorreu um erro inesperado", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
