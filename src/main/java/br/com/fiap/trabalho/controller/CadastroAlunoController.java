@@ -46,4 +46,11 @@ public class CadastroAlunoController {
 		alunoService.delete(id);
 		return new ResponseEntity("Deletado com sucesso", HttpStatus.OK);
 	}
+	
+	@GetMapping("/alunos/{nome}")
+	public List<AlunoDTO> getByName(@PathVariable String nome) {
+		return alunoService.getByName(nome);
+	}
+	
+	
 }
