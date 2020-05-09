@@ -52,5 +52,9 @@ public class CadastroAlunoController {
 		return alunoService.getByName(nome);
 	}
 	
+	@GetMapping("alunos/status/{id}")
+	public StatusDTO getStatusById(@PathVariable Integer id) {
+		return alunoService.getAlunoStatus(id);
+	}
 	
 }
