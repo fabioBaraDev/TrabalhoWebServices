@@ -32,7 +32,7 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 			
 			//cria usuario padrao de admin
 			CreateUserDTO usuario = new CreateUserDTO();
-			usuario.setUsername("admin");
+			usuario.setUsername("admin@fiap.com.br");
 			usuario.setPassword("admin");
 			
 			userService.create(usuario);
