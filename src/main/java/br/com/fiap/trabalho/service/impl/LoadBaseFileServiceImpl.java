@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fiap.trabalho.dto.CreateUserDTO;
 import br.com.fiap.trabalho.entity.Aluno;
 import br.com.fiap.trabalho.entity.Credito;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.repository.CreditoRepository;
 import br.com.fiap.trabalho.service.LoadBaseFileService;
+import br.com.fiap.trabalho.service.UserService;
 import br.com.fiap.trabalho.util.FilterFile;
 
 @Service
@@ -22,8 +24,19 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 	@Autowired
 	private CreditoRepository credito;
 	
+	@Autowired
+	private UserService userService;
+	
 	public void load() throws IOException {
 		try {
+			
+			//cria usuario padrao de admin
+			CreateUserDTO usuario = new CreateUserDTO();
+			usuario.setUsername("admin");
+			usuario.setPassword("admin");
+			
+			userService.create(usuario);
+			
 			List<String> file = FilterFile.filterFromResource("lista_alunos.txt");
 
 			file.forEach((linha) -> {
