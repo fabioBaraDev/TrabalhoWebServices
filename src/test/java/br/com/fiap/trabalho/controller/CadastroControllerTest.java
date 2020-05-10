@@ -1,4 +1,4 @@
-package br.com.fiap.trabalho.controller;
+/*package br.com.fiap.trabalho.controller;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -90,3 +90,4 @@ public class CadastroControllerTest {
 		assertNotNull(res);
 	}
 }
+*/

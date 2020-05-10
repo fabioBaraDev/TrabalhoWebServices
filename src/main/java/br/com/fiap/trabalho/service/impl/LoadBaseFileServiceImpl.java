@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.CreateUserDTO;
+import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.entity.Aluno;
 import br.com.fiap.trabalho.entity.Credito;
+import br.com.fiap.trabalho.entity.Endereco;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.repository.CreditoRepository;
+import br.com.fiap.trabalho.service.EnderecoService;
 import br.com.fiap.trabalho.service.LoadBaseFileService;
 import br.com.fiap.trabalho.service.UserService;
 import br.com.fiap.trabalho.util.FilterFile;
@@ -26,6 +29,9 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 	
 	public void load() throws IOException {
 		try {
@@ -54,8 +60,15 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 		String nome = entry.substring(0, 41);
 
 		Aluno aluno = new Aluno(nome, numeroCartao);
-
+		EnderecoDTO endereco = new EnderecoDTO();
+		endereco.setId(aluno.getId());
+		endereco.setLogradouro("Avenida Capitão-Mor Aguiar");
+		endereco.setNumero("123");
+		endereco.setComplemento("13");
+		endereco.setCep("11310201");
+		
 		alunos.save(aluno);
+		enderecoService.salvar(endereco, aluno.getId());
 		setSaldo(aluno);
 	}
 	

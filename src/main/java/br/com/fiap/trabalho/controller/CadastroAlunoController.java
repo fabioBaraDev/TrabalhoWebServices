@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.CreditoDTO;
+import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.service.AlunoService;
+import br.com.fiap.trabalho.service.EnderecoService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +21,25 @@ import org.springframework.http.ResponseEntity;
 public class CadastroAlunoController {
 	
 	@Autowired
+	private EnderecoService service;
+	
+	@Autowired
 	private AlunoService alunoService;
 
+	@GetMapping("/endereco/{id}")
+	public EnderecoDTO getEnderecoById(@PathVariable Integer id) {
+		return service.getEnderecoByID(id);
+	}
+	
 	@PostMapping("/alunos")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity save(@RequestBody CreditoDTO creditoDTO) {
 		try {
+			AlunoDTO res = alunoService.save(creditoDTO);
+			
+			if(res == null) {
+				return new ResponseEntity("CEP Invalido", HttpStatus.NOT_ACCEPTABLE);
+			}
 			return new ResponseEntity(alunoService.save(creditoDTO), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
