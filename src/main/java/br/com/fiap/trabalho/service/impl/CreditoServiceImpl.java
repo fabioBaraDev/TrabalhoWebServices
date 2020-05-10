@@ -32,6 +32,9 @@ public class CreditoServiceImpl implements CreditoService {
 	AlunoService alunoService;
 
 	@Autowired
+	PagseguroService pagseguroService;
+
+	@Autowired
 	ExtratoRepository extratoRepository;
 
 	public ResponseEntity comprarCredito(CompraDTO compraRequest) throws Exception {
@@ -40,6 +43,8 @@ public class CreditoServiceImpl implements CreditoService {
 
 		if(!alunoPersistido.isPresent())
 			throw new AlunoNaoEncontrado();
+
+		String teste = pagseguroService.GetSessionId();
 
 		return persistir(compraRequest, Operacao.CREDITO);
 	}
