@@ -1,6 +1,6 @@
- package br.com.fiap.trabalho.dto.pagseguro;
+package br.com.fiap.trabalho.dto.pagseguro;
 
-public class RawMessage {
+public class RawCode {
     private String _xmlns;
     private String _xsi;
 

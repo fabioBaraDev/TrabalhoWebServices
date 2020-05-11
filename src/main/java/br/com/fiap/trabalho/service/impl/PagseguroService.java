@@ -59,7 +59,7 @@ public class PagseguroService {
             try {
                 JAXBContext contextoXML = JAXBContext.newInstance(SessionDTO.class);
                 Unmarshaller jaxbUnmarshaller  = contextoXML.createUnmarshaller();
-                System.out.println(content.toString());
+
                 SessionDTO sessao = (SessionDTO) jaxbUnmarshaller.unmarshal(new StringReader(content.toString()));
 
                 return sessao.getId();
