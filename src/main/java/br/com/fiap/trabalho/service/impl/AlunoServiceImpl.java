@@ -9,12 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
-import br.com.fiap.trabalho.dto.CreditoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.entity.Aluno;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.service.AlunoService;
-import br.com.fiap.trabalho.service.CreditoService;
 import br.com.fiap.trabalho.service.EnderecoService;
 import br.com.fiap.trabalho.service.ValidaCEP;
 
@@ -27,48 +25,35 @@ public class AlunoServiceImpl implements AlunoService {
 	private AlunoRepository alunoRepository;
 
 	@Autowired
-	private CreditoService creditoService;
-
-	@Autowired
 	private EnderecoService enderecoService;
 	
 	@Autowired
 	private ValidaCEP validaCEP;
 
-	public AlunoDTO save(CreditoDTO creditoDTO) throws Exception {
+	public AlunoDTO save(AlunoDTO alunoDTO) throws Exception {
 		
-		String cep = creditoDTO.getAluno().getEndereco().getCep();
+		String cep = alunoDTO.getEndereco().getCep();
 		
 		if(!validaCEP.validar(cep)) {
 			return null;
 		}
 		
-		Aluno aluno = createAluno(creditoDTO.getAluno());
+		Aluno aluno = createAluno(alunoDTO);
 		aluno = alunoRepository.save(aluno);
-		creditoDTO.getAluno().setId(aluno.getId());
+		alunoDTO.setId(aluno.getId());
 
-		enderecoService.salvar(creditoDTO.getAluno().getEndereco(), aluno.getId());
+		enderecoService.salvar(alunoDTO.getEndereco(), aluno.getId());
 
-		if (!creditoService.salvar(creditoDTO, true).isPresent()) {
-			throw new Exception("Erro ao cadastrar saldo");
-		}
-
-		return createAlunoDTO(aluno);
+		return alunoDTO;
 	}
 
 	private Aluno createAluno(AlunoDTO alunoDTO) {
 		return new Aluno(alunoDTO.getNome(), alunoDTO.getNumeroCartao());
 	}
 
-	private AlunoDTO createAlunoDTO(Aluno aluno) {
-		return new AlunoDTO(aluno.getId(), aluno.getNome(), aluno.getNumeroCartao(),
-				enderecoService.getEnderecoByID(aluno.getId()));
-	}
-
 	public String delete(Integer id) {
 		Optional<Aluno> aluno = getAluno(id);
 		alunoRepository.delete(aluno.get());
-		creditoService.delete(id);
 		return "Deletado com sucesso";
 	}
 
@@ -108,7 +93,11 @@ public class AlunoServiceImpl implements AlunoService {
 		return alunoDTO;
 	}
 
+	@Override
 	public StatusDTO getAlunoStatus(Integer id) {
-		return creditoService.getStatusCredito(id);
+		Optional<Aluno> aluno = alunoRepository.findById(id);
+		StatusDTO status = new StatusDTO();
+		status.setStatusAluno(aluno.get().getStatusAluno());
+		return status;
 	}
 }

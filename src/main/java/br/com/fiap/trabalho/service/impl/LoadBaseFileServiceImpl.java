@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.trabalho.dto.CreateUserDTO;
 import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.entity.Aluno;
-import br.com.fiap.trabalho.entity.Credito;
-import br.com.fiap.trabalho.entity.Endereco;
 import br.com.fiap.trabalho.repository.AlunoRepository;
-import br.com.fiap.trabalho.repository.CreditoRepository;
 import br.com.fiap.trabalho.service.EnderecoService;
 import br.com.fiap.trabalho.service.LoadBaseFileService;
 import br.com.fiap.trabalho.service.UserService;
@@ -24,9 +21,6 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 	@Autowired
 	private AlunoRepository alunos;
 
-	@Autowired
-	private CreditoRepository credito;
-	
 	@Autowired
 	private UserService userService;
 	
@@ -60,6 +54,7 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 		String nome = entry.substring(0, 41);
 
 		Aluno aluno = new Aluno(nome, numeroCartao);
+		aluno.setStatusAluno(true);
 		EnderecoDTO endereco = new EnderecoDTO();
 		endereco.setId(aluno.getId());
 		endereco.setLogradouro("Avenida Capitão-Mor Aguiar");
@@ -69,19 +64,6 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 		
 		alunos.save(aluno);
 		enderecoService.salvar(endereco, aluno.getId());
-		setSaldo(aluno);
-	}
-	
-	private void setSaldo(Aluno aluno) {
-		
-		Credito creditoEntity = new Credito();
-		creditoEntity.setId(aluno.getId());
-		creditoEntity.setNumeroCartao(aluno.getNumeroCartao());
-		creditoEntity.setSaldo(getSaldoRandom());
-		credito.save(creditoEntity);
-	}
-	
-	private Double getSaldoRandom() {
-		return Math.floor((Math.random()* 1000) * 100) / 100;
+
 	}
 }

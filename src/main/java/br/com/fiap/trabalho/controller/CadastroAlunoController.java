@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
-import br.com.fiap.trabalho.dto.CreditoDTO;
 import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.service.AlunoService;
@@ -33,16 +32,16 @@ public class CadastroAlunoController {
 	
 	@PostMapping("/alunos")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity save(@RequestBody CreditoDTO creditoDTO) {
+	public ResponseEntity<Object> save(@RequestBody AlunoDTO creditoDTO) {
 		try {
 			AlunoDTO res = alunoService.save(creditoDTO);
 			
 			if(res == null) {
-				return new ResponseEntity("CEP Invalido", HttpStatus.NOT_ACCEPTABLE);
+				return new ResponseEntity<Object>("CEP Invalido", HttpStatus.NOT_ACCEPTABLE);
 			}
-			return new ResponseEntity(alunoService.save(creditoDTO), HttpStatus.OK);
+			return new ResponseEntity<Object>(alunoService.save(creditoDTO), HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -57,9 +56,9 @@ public class CadastroAlunoController {
 	}
 
 	@DeleteMapping("/alunos/{id}")
-	public ResponseEntity delete(@PathVariable Integer id) {
+	public ResponseEntity<String> delete(@PathVariable Integer id) {
 		alunoService.delete(id);
-		return new ResponseEntity("Deletado com sucesso", HttpStatus.OK);
+		return new ResponseEntity<String>("Deletado com sucesso", HttpStatus.OK);
 	}
 	
 	@GetMapping("/alunos/nome/{nome}")

@@ -20,8 +20,19 @@ public class Aluno implements Serializable {
 	@Column(name="nome", nullable = false)
 	private String nome;
 
-	@Column(name="numeroCartao", nullable = false)
+	@Column(name="numero_cartao", nullable = false)
 	private Long numeroCartao;
+	
+	@Column(name="status_aluno", nullable = false)
+	private Boolean statusAluno = false;
+
+	public Boolean getStatusAluno() {
+		return statusAluno;
+	}
+
+	public void setStatusAluno(Boolean statusAluno) {
+		this.statusAluno = statusAluno;
+	}
 
 	public Long getNumeroCartao() {
 		return numeroCartao;

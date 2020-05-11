@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
-import br.com.fiap.trabalho.dto.CreditoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 
 public interface AlunoService {
 
-	public AlunoDTO save(CreditoDTO creditoDTO) throws Exception;
+	public AlunoDTO save(AlunoDTO alunoDTO) throws Exception;
 
 	public String delete(Integer id);
 

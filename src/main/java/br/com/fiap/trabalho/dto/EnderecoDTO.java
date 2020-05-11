@@ -1,13 +1,24 @@
 package br.com.fiap.trabalho.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.fiap.trabalho.entity.Endereco;
 
 public class EnderecoDTO {
 
+	@JsonProperty("logradouro")
 	private String logradouro;	
+	
+	@JsonProperty("id")
 	private Integer id;
+	
+	@JsonProperty("numero")
 	private String numero;
+	
+	@JsonProperty("complemento")
 	private String complemento;
+	
+	@JsonProperty("cep")
 	private String cep;
 
 	public EnderecoDTO() {}

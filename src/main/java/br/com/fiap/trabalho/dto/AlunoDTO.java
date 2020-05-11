@@ -1,9 +1,18 @@
 package br.com.fiap.trabalho.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AlunoDTO {
+	@JsonProperty("nome")
 	private String nome;
+	
+	@JsonProperty("numero_cartao")
 	private Long numeroCartao;
+	
+	@JsonProperty("id")
 	private Integer id;
+	
+	@JsonProperty("endereco")
 	private EnderecoDTO endereco;
 	
 	public AlunoDTO(Integer id, String nome, Long numeroCartao, EnderecoDTO endereco) {
