@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
+import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.entity.Aluno;
 import br.com.fiap.trabalho.exceptions.CEPInvalidoException;
@@ -44,8 +45,9 @@ public class AlunoServiceImpl implements AlunoService {
 		aluno = alunoRepository.save(aluno);
 		alunoDTO.setId(aluno.getId());
 
-		enderecoService.salvar(alunoDTO.getEndereco(), aluno.getId());
-
+		EnderecoDTO endereco = enderecoService.salvar(alunoDTO.getEndereco(), aluno.getId());
+		alunoDTO.setEndereco(endereco);
+		
 		return alunoDTO;
 	}
 
