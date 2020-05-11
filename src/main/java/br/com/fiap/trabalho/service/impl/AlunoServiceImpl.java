@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
@@ -99,5 +100,13 @@ public class AlunoServiceImpl implements AlunoService {
 		StatusDTO status = new StatusDTO();
 		status.setStatusAluno(aluno.get().getStatusAluno());
 		return status;
+	}
+	
+	public ResponseEntity<String> setStatusAluno(Integer id, Boolean status) {
+		Optional<Aluno> aluno =alunoRepository.findById(id);
+		aluno.get().setStatusAluno(status);
+		alunoRepository.save(aluno.get());
+		String resposta = status.equals(true)? "Ativado com sucesso" : "Desativado com sucesso";
+		return new ResponseEntity<String>(resposta, HttpStatus.ACCEPTED);
 	}
 }

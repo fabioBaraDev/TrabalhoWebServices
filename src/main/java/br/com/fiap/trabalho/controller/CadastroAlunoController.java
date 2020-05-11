@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.EnderecoDTO;
+import br.com.fiap.trabalho.dto.IdentificadoAlunoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.service.AlunoService;
 import br.com.fiap.trabalho.service.EnderecoService;
@@ -32,14 +33,14 @@ public class CadastroAlunoController {
 	
 	@PostMapping("/alunos")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Object> save(@RequestBody AlunoDTO creditoDTO) {
+	public ResponseEntity<Object> save(@RequestBody AlunoDTO alunoDTO) {
 		try {
-			AlunoDTO res = alunoService.save(creditoDTO);
+			AlunoDTO res = alunoService.save(alunoDTO);
 			
 			if(res == null) {
 				return new ResponseEntity<Object>("CEP Invalido", HttpStatus.NOT_ACCEPTABLE);
 			}
-			return new ResponseEntity<Object>(alunoService.save(creditoDTO), HttpStatus.OK);
+			return new ResponseEntity<Object>(alunoService.save(alunoDTO), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -69,6 +70,18 @@ public class CadastroAlunoController {
 	@GetMapping("alunos/status/{id}")
 	public StatusDTO getStatusById(@PathVariable Integer id) {
 		return alunoService.getAlunoStatus(id);
+	}
+
+	@PostMapping("/alunos/ativar")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<String> ativarAluno(@RequestBody IdentificadoAlunoDTO idAluno){
+		return alunoService.setStatusAluno(idAluno.getId(), true);
+	}
+	
+	@PostMapping("/alunos/desativar")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<String> desativarAluno(@RequestBody IdentificadoAlunoDTO idAluno){
+		return alunoService.setStatusAluno(idAluno.getId(), false);
 	}
 	
 }
