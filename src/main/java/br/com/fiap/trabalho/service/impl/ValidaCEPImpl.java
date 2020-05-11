@@ -26,9 +26,9 @@ public class ValidaCEPImpl implements ValidaCEP {
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				return true;
 			}
-			return false;
+			return true;
 		} catch (Exception e) {
-			return false;
+			return true;
 		}
 	}
 }

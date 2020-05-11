@@ -40,7 +40,11 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 			List<String> file = FilterFile.filterFromResource("lista_alunos.txt");
 
 			file.forEach((linha) -> {
-				setData(linha.toString());
+				try {
+					setData(linha.toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			});
 
 		} catch (Exception e) {
@@ -48,7 +52,7 @@ public class LoadBaseFileServiceImpl implements LoadBaseFileService {
 		}
 	}
 
-	private void setData(String entry) {
+	private void setData(String entry) throws Exception {
 
 		Long numeroCartao = Long.parseLong(entry.substring(41, 55).replace("-", "").replace(" ", ""));
 		String nome = entry.substring(0, 41);

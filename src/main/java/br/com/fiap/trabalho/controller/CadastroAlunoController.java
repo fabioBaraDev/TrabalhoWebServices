@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.fiap.trabalho.dto.AlunoDTO;
-import br.com.fiap.trabalho.dto.EnderecoDTO;
 import br.com.fiap.trabalho.dto.IdentificadoAlunoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
+import br.com.fiap.trabalho.exceptions.CEPInvalidoException;
 import br.com.fiap.trabalho.service.AlunoService;
-import br.com.fiap.trabalho.service.EnderecoService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,27 +20,19 @@ import org.springframework.http.ResponseEntity;
 public class CadastroAlunoController {
 	
 	@Autowired
-	private EnderecoService service;
-	
-	@Autowired
 	private AlunoService alunoService;
-
-	@GetMapping("/endereco/{id}")
-	public EnderecoDTO getEnderecoById(@PathVariable Integer id) {
-		return service.getEnderecoByID(id);
-	}
 	
 	@PostMapping("/alunos")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Object> save(@RequestBody AlunoDTO alunoDTO) {
 		try {
-			AlunoDTO res = alunoService.save(alunoDTO);
-			
-			if(res == null) {
-				return new ResponseEntity<Object>("CEP Invalido", HttpStatus.NOT_ACCEPTABLE);
-			}
+			alunoService.save(alunoDTO);
+		
 			return new ResponseEntity<Object>(alunoService.save(alunoDTO), HttpStatus.OK);
-		} catch (Exception e) {
+		}catch (CEPInvalidoException e) {
+			return new ResponseEntity<Object>("CEP Invalido", HttpStatus.BAD_REQUEST);
+		}
+		catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -83,5 +74,4 @@ public class CadastroAlunoController {
 	public ResponseEntity<String> desativarAluno(@RequestBody IdentificadoAlunoDTO idAluno){
 		return alunoService.setStatusAluno(idAluno.getId(), false);
 	}
-	
 }

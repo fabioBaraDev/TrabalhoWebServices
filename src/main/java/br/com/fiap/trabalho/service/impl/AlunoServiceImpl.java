@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.trabalho.dto.AlunoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 import br.com.fiap.trabalho.entity.Aluno;
+import br.com.fiap.trabalho.exceptions.CEPInvalidoException;
 import br.com.fiap.trabalho.repository.AlunoRepository;
 import br.com.fiap.trabalho.service.AlunoService;
 import br.com.fiap.trabalho.service.EnderecoService;
@@ -36,7 +37,7 @@ public class AlunoServiceImpl implements AlunoService {
 		String cep = alunoDTO.getEndereco().getCep();
 		
 		if(!validaCEP.validar(cep)) {
-			return null;
+			throw new CEPInvalidoException();
 		}
 		
 		Aluno aluno = createAluno(alunoDTO);
