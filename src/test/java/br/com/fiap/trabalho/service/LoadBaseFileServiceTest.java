@@ -1,4 +1,4 @@
-package br.com.fiap.trabalho.service;
+/*package br.com.fiap.trabalho.service;
 
 import java.io.IOException;
 
@@ -47,4 +47,4 @@ public class LoadBaseFileServiceTest {
 		service.load();
 
 	}
-}
+}*/
