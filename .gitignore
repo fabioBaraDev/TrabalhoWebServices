@@ -29,3 +29,6 @@ build/
 ### VS Code ###
 .vscode/
 /target/
+
+### H2 DB FILES ###
+/db*

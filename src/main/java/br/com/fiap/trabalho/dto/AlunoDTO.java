@@ -4,16 +4,19 @@ public class AlunoDTO {
 	private String nome;
 	private Long numeroCartao;
 	private Integer id;
+	private EnderecoDTO endereco;
 	
-	public AlunoDTO(Integer id, String nome, Long numeroCartao) {
+	public AlunoDTO(Integer id, String nome, Long numeroCartao, EnderecoDTO endereco) {
 		this.id = id;
 		this.nome = nome.toUpperCase();
 		this.setNumeroCartao(numeroCartao);
+		this.setEndereco(endereco);
 	}
 	
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome.toUpperCase();
 	}
@@ -32,5 +35,13 @@ public class AlunoDTO {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public EnderecoDTO getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoDTO endereco) {
+		this.endereco = endereco;
 	}
 }

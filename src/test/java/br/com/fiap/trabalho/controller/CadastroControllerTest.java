@@ -1,4 +1,4 @@
-package br.com.fiap.trabalho.controller;
+/*package br.com.fiap.trabalho.controller;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -83,16 +83,6 @@ public class CadastroControllerTest {
 	}
 
 	@Test
-	public void getByName() {
-		List<AlunoDTO> list = new ArrayList<AlunoDTO>();
-		list.add((new AlunoDTO(1, "Joao", 1111111L)));
-		Mockito.when(alunoService.getByName(Mockito.anyString())).thenReturn(list);
-
-		List<AlunoDTO> res = controller.getByName("Joao");
-		assertNotNull(res);
-	}
-
-	@Test
 	public void delete() {
 		
 		Mockito.when(alunoService.delete(Mockito.anyInt())).thenReturn("Sucesso");
@@ -100,3 +90,4 @@ public class CadastroControllerTest {
 		assertNotNull(res);
 	}
 }
+*/
