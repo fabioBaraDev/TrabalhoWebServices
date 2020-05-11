@@ -37,9 +37,11 @@ public class AlunoServiceImpl implements AlunoService {
 		
 		String cep = alunoDTO.getEndereco().getCep();
 		
+		System.out.println("Vai entrar na validação de CPF");
 		if(!validaCEP.validar(cep)) {
 			throw new CEPInvalidoException();
 		}
+		System.out.println("Saiu da Validação do CPF");
 		
 		Aluno aluno = createAluno(alunoDTO);
 		aluno = alunoRepository.save(aluno);
