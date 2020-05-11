@@ -3,14 +3,12 @@ package br.com.fiap.trabalho.service;
 
 import java.util.Optional;
 
-import br.com.fiap.trabalho.dto.CompraDTO;
 import org.springframework.http.ResponseEntity;
 
 import br.com.fiap.trabalho.dto.CreditoDTO;
 import br.com.fiap.trabalho.dto.StatusDTO;
 
 public interface CreditoService {
-	public ResponseEntity comprarCredito(CompraDTO compraDTO) throws Exception;
 	public ResponseEntity debitar(CreditoDTO creditoDTO) throws Exception;
 	public ResponseEntity adicionar(CreditoDTO creditoDTO) throws Exception;
 	public CreditoDTO getSaldoById(Integer id) throws Exception;
