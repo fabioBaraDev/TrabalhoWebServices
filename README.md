@@ -1,6 +1,6 @@
 # TrabalhoWebServices
 
-Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de pagamentos dos alunos de uma universidade.
+Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de alunos de uma universidade.
 
 <b> Para rodar o software localmente:</b> </br>
 1 - É pré-requisito ter o Java 8 instalado para executar essa API</br>
@@ -9,8 +9,11 @@ Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de pa
 4 - Execute a seguinte linha: java -jar trabalho-0.0.1-SNAPSHOT.jar</br>
 5 - Para executar os endpoints da API, você pode usar um Postman, favor ver na documentação Swagger os endpoints possíveis </br>
 6 - Endereço do Swagger após subir o projeto http://localhost:8080/swagger-ui.html#/ </br>
-7 - Todos os possíveis clientes são carregados de uma base pré-determinada, dessa forma, eles precisam ser habilitados para que possam transacionar, porem podemos consultar a base de clientes sem problemas.</br>
-8 - Você pode adiocinar novos clientes, onde este já estará habilitado para executar as transações</br>
+7 - Todos os possíveis clientes são carregados de uma base pré-determinada.</br>
+8 - Você pode adiocinar novos clientes, onde este já estará habilitado </br>
+9 - Para conseguir consumir os dados da API, ´necessario que seja gerado um token do usuário existente, para teste há o usuario administrados padrão, dados para logon: </br>
+
+admin@fiap.com.br:admin </br>
 
 Esse projeto foi desenvolvido na IDE Eclipse, versão 2019-12 (4.14.0) e é uma Maven Project, recomendo o uso dessa ferramenta para a análise do código fonte!
 
@@ -18,9 +21,14 @@ Esse projeto foi desenvolvido na IDE Eclipse, versão 2019-12 (4.14.0) e é uma 
 Esse projeto está deployado no Heroku Cloud na seguinte URL
 https://escola-contas.herokuapp.com/
 
-
 <b> Documentação Swagger da API </b> </br>
 https://escola-contas.herokuapp.com/swagger-ui.html#/
+
+<b> Foi criado um frontend em Android/Kotlin, para utilizar entre em: </b> </br>
+https://github.com/fabioBaraDev/TrabalhoWebServicesFrontEnd
+
+<b> Exemplo do fluxo de telas que interagem com a API </b> </br>
+https://github.com/fabioBaraDev/TrabalhoWebServicesFrontEnd/blob/master/fluxo_de_telas.gif
 
 <b> ENGLISH VERSION </b>
 
@@ -33,8 +41,11 @@ To run the software locally:
 4 - Run the following line: java -jar trabalho-0.0.1-SNAPSHOT.jar </br>
 5 - To run the API endpoints, you can use a Postman, please see the Swagger documentation for possible endpoints </br>
 6 - Swagger's address after uploading the project is http://localhost:8080/swagger-ui.html#/ </br>
-7 - All the possible customers are loaded from a predetermined base, so they need to be enabled so that they can transact, however we can consult the customer base without problems. </br>
-8 - You can add new customers, this new will be automaticaly avaliable to transact</br>
+7 - All the possible customers are loaded from a predetermined base </br>
+8 - You can add new customers, this new will be automaticaly avaliable</br>
+9 - To be able to consume the API data, it is necessary to generate an existing user token, for testing there is the standard managed user, login data: </br>
+
+admin@fiap.com.br:admin </br>
 
 This project was developed in IDE Eclipse, version 2019-12 (4.14.0) and is a Maven Project, I recommend using this tool for analyzing the source code!
 
@@ -44,5 +55,11 @@ https://escola-contas.herokuapp.com/
 
 <b> API Swagger documentation </b> </br>
 https://escola-contas.herokuapp.com/swagger-ui.html#/
+
+<b> An frontend interface has been created on Android/Kotlin, to use it, you can get it on: </b> </br>
+https://github.com/fabioBaraDev/TrabalhoWebServicesFrontEnd
+
+<b> Screen Flux Sample that interact with the api </b> </br>
+https://github.com/fabioBaraDev/TrabalhoWebServicesFrontEnd/blob/master/fluxo_de_telas.gif
 
 by Fabio Bara
