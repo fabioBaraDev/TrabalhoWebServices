@@ -12,6 +12,8 @@ Projeto de fins acadêmicos sobre o WebServices, onde simulamos o controle de al
 7 - Todos os possíveis clientes são carregados de uma base pré-determinada.</br>
 8 - Você pode adiocinar novos clientes, onde este já estará habilitado </br>
 9 - Para conseguir consumir os dados da API, ´necessario que seja gerado um token do usuário existente, para teste há o usuario administrados padrão, dados para logon: </br>
+10 - Est API interage com um serviço externo de validação de CEP, endpoint: </br>
+https://viacep.com.br/ </br>
 
 admin@fiap.com.br:admin </br>
 
@@ -44,6 +46,9 @@ To run the software locally:
 7 - All the possible customers are loaded from a predetermined base </br>
 8 - You can add new customers, this new will be automaticaly avaliable</br>
 9 - To be able to consume the API data, it is necessary to generate an existing user token, for testing there is the standard managed user, login data: </br>
+10 - This API interacts with an external service to validate the brazilian postal number (CEP), endpoint: </br>
+
+https://viacep.com.br/ </br>
 
 admin@fiap.com.br:admin </br>
 
